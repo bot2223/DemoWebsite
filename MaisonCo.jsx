@@ -110,9 +110,9 @@ const translations = {
   },
 };
 
-const AIRTABLE_BASE_ID = "YOUR_BASE_ID";
+const AIRTABLE_BASE_ID = "patWAe8jY57gXSK56";
 const AIRTABLE_TABLE_NAME = "Leads";
-const AIRTABLE_API_KEY = "YOUR_API_KEY";
+const AIRTABLE_API_KEY = "apphM5DEUTpZkmsRU";
 
 const emptyForm = { fullName: "", email: "", phone: "", intent: "buy", budget: "", area: "", timing: "" };
 
