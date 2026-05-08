@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Maison & Co. — Find Your Dream Home with a Trusted Local Agent</title>
+<meta name="description" content="Boutique real estate brokerage matching discerning buyers and sellers with handpicked premium agents across Europe." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --primary:oklch(0.18 0.05 260);
+    --primary-fg:oklch(0.98 0.01 90);
+    --gold:oklch(0.78 0.13 75);
+    --gold-deep:oklch(0.68 0.13 70);
+    --bg:oklch(0.98 0.01 90);
+    --card:#ffffff;
+    --fg:oklch(0.18 0.05 260);
+    --muted:oklch(0.55 0.02 260);
+    --border:oklch(0.9 0.01 80);
+    --shadow-soft:0 4px 20px -6px oklch(0.18 0.05 260 / 0.15);
+    --shadow-elegant:0 20px 60px -20px oklch(0.18 0.05 260 / 0.25);
+    --gradient-gold:linear-gradient(135deg,var(--gold),var(--gold-deep));
+    --gradient-hero:linear-gradient(180deg,oklch(0.18 0.05 260 / 0.55) 0%,oklch(0.18 0.05 260 / 0.7) 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+  .display{font-family:'Playfair Display',Georgia,serif;font-weight:600;letter-spacing:-0.01em}
+  a{color:inherit;text-decoration:none}
+  /* Header */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    border-bottom:1px solid transparent;
+    transition:background-color .5s ease-in-out,box-shadow .5s ease-in-out,border-color .5s ease-in-out,backdrop-filter .5s ease-in-out;
+  }
+  header.scrolled{
+    background:oklch(0.18 0.05 260 / 0.95);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    box-shadow:var(--shadow-soft);
+    border-bottom-color:rgba(255,255,255,0.1);
+  }
+  .nav{max-width:1200px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:8px;color:#fff;font-family:'Playfair Display',serif;font-size:20px;font-weight:600;text-shadow:0 1px 2px rgba(0,0,0,0.3)}
+  .brand svg{width:24px;height:24px;color:var(--gold)}
+  .lang-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font:500 14px Inter,sans-serif;cursor:pointer;backdrop-filter:blur(8px);transition:background .2s}
+  .lang-btn:hover{background:rgba(255,255,255,0.2)}
+  /* Hero */
+  .hero{position:relative;width:100%;height:60vh;min-height:460px;overflow:hidden}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero-overlay{position:absolute;inset:0;background:var(--gradient-hero)}
+  .hero-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;color:#fff}
+  .eyebrow{font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:14px}
+  .hero h1{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(32px,5vw,56px);line-height:1.1;max-width:760px}
+  .hero p{margin-top:18px;font-size:clamp(15px,2vw,18px);max-width:560px;color:rgba(255,255,255,0.85)}
+  /* Form card */
+  .form-wrap{max-width:640px;margin:-100px auto 0;padding:0 24px 80px;position:relative;z-index:10}
+  @media(min-width:768px){.form-wrap{margin-top:-130px}}
+  .card{background:var(--card);border:1px solid color-mix(in oklab,var(--border) 60%,transparent);border-radius:20px;padding:28px;box-shadow:var(--shadow-elegant)}
+  @media(min-width:768px){.card{padding:40px}}
+  .row{display:grid;gap:18px;margin-top:18px}
+  @media(min-width:640px){.row.cols-2{grid-template-columns:1fr 1fr}}
+  .row:first-child{margin-top:0}
+  label{display:block;font-size:14px;font-weight:500;margin-bottom:6px;color:var(--fg)}
+  input,select{
+    width:100%;height:44px;padding:0 14px;border-radius:8px;
+    border:1px solid var(--border);background:#fff;color:var(--fg);
+    font:400 15px Inter,sans-serif;transition:border-color .15s,box-shadow .15s;
+  }
+  select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+  input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px oklch(0.78 0.13 75 / 0.2)}
+  .toggle-group{display:flex;gap:12px}
+  .toggle-btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:8px;border:1px solid var(--border);background:#fff;color:var(--fg);font:500 14px Inter,sans-serif;cursor:pointer;transition:all .2s}
+  .toggle-btn:hover{border-color:color-mix(in oklab,var(--gold) 60%,transparent)}
+  .toggle-btn.active{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:var(--shadow-soft)}
+  .toggle-btn svg{width:16px;height:16px}
+  .submit{
+    margin-top:32px;width:100%;height:50px;border:0;border-radius:12px;
+    background:var(--gradient-gold);color:var(--primary);
+    font:600 16px Inter,sans-serif;cursor:pointer;box-shadow:var(--shadow-soft);
+    transition:transform .15s;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  }
+  .submit:hover:not(:disabled){transform:scale(1.01)}
+  .submit:active:not(:disabled){transform:scale(0.99)}
+  .submit:disabled{opacity:0.7;cursor:not-allowed}
+  .spinner{width:18px;height:18px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .privacy{margin-top:16px;font-size:12px;color:var(--muted);text-align:center}
+  footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;font-size:12px;color:var(--muted)}
+  /* Toast */
+  .toast-wrap{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:100;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+  .toast{pointer-events:auto;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow-elegant);padding:14px 18px;border-radius:12px;font-size:14px;min-width:280px;max-width:90vw;animation:slideDown .3s ease-out}
+  .toast.success{border-left:3px solid var(--gold)}
+  .toast.error{border-left:3px solid #dc2626}
+  @keyframes slideDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<header id="header">
+  <div class="nav">
+    <a href="/" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1m4 0h1M9 13h1m4 0h1M9 17h6"/></svg>
+      <span data-i18n="brand">Maison & Co.</span>
+    </a>
+    <button class="lang-btn" id="langBtn" aria-label="Toggle language">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></svg>
+      <span id="langLabel">🇬🇧 EN</span>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&q=80" alt="Luxury villa with infinity pool at golden hour" />
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <span class="eyebrow" data-i18n="eyebrow">Premium Real Estate</span>
+    <h1 class="display" data-i18n="heroTitle">Find Your Dream Home Today</h1>
+    <p data-i18n="heroSubtitle">Tell us what you're looking for — we'll match you with the perfect agent.</p>
+  </div>
+</section>
+
+<div class="form-wrap">
+  <form class="card" id="leadForm" novalidate>
+    <div class="row cols-2">
+      <div>
+        <label for="name"><span data-i18n="fullName">Full Name</span> *</label>
+        <input id="name" name="name" type="text" maxlength="100" data-i18n-ph="fullNamePh" placeholder="Jane Doe" />
+      </div>
+      <div>
+        <label for="email"><span data-i18n="email">Email Address</span> *</label>
+        <input id="email" name="email" type="email" maxlength="255" data-i18n-ph="emailPh" placeholder="jane@example.com" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="phone"><span data-i18n="phone">Phone Number</span> *</label>
+        <input id="phone" name="phone" type="tel" maxlength="20" data-i18n-ph="phonePh" placeholder="+49 30 1234567" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label><span data-i18n="intent">I'm interested in</span> *</label>
+        <div class="toggle-group">
+          <button type="button" class="toggle-btn active" data-intent="buying">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span data-i18n="buying">Buying</span>
+          </button>
+          <button type="button" class="toggle-btn" data-intent="selling">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/></svg>
+            <span data-i18n="selling">Selling</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row cols-2">
+      <div>
+        <label for="budget"><span data-i18n="budget">Budget</span> *</label>
+        <select id="budget" name="budget"><option value="" data-i18n="budgetPh">Select a budget range</option></select>
+      </div>
+      <div>
+        <label for="area"><span data-i18n="area">Area</span> *</label>
+        <input id="area" name="area" type="text" maxlength="100" data-i18n-ph="areaPh" placeholder="e.g. Berlin Mitte" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="timing"><span data-i18n="timing">Timing</span> *</label>
+        <select id="timing" name="timing"><option value="" data-i18n="timingPh">Select a timeframe</option></select>
+      </div>
+    </div>
+
+    <button type="submit" class="submit" id="submitBtn">
+      <span id="submitLabel" data-i18n="submit">Get Me An Agent</span>
+    </button>
+    <p class="privacy" data-i18n="privacy">Your information is private and never shared without consent.</p>
+  </form>
+</div>
+
+<footer>© <span id="year"></span> Maison & Co. — Premium Real Estate</footer>
+
+<script>
+const T = {
+  en:{brand:"Maison & Co.",eyebrow:"Premium Real Estate",heroTitle:"Find Your Dream Home Today",heroSubtitle:"Tell us what you're looking for — we'll match you with the perfect agent.",fullName:"Full Name",fullNamePh:"Jane Doe",email:"Email Address",emailPh:"jane@example.com",phone:"Phone Number",phonePh:"+49 30 1234567",intent:"I'm interested in",buying:"Buying",selling:"Selling",budget:"Budget",budgetPh:"Select a budget range",budgetOptions:["Under €100k","€100k–€250k","€250k–€500k","€500k–€1M","Over €1M"],area:"Area",areaPh:"e.g. Berlin Mitte",timing:"Timing",timingPh:"Select a timeframe",timingOptions:["ASAP","Within 3 months","Within 6 months","Just browsing"],submit:"Get Me An Agent",submitting:"Sending…",toastSuccess:"Thanks! An agent will be in touch shortly.",privacy:"Your information is private and never shared without consent.",invalidPhone:"Please enter a valid phone number.",requiredFields:"Please fill in all required fields.",toastError:"Something went wrong. Please try again."},
+  de:{brand:"Maison & Co.",eyebrow:"Premium Immobilien",heroTitle:"Finden Sie Ihr Traumhaus",heroSubtitle:"Sagen Sie uns, was Sie suchen — wir vermitteln Ihnen den passenden Makler.",fullName:"Vollständiger Name",fullNamePh:"Max Mustermann",email:"E-Mail-Adresse",emailPh:"max@beispiel.de",phone:"Telefonnummer",phonePh:"+49 30 1234567",intent:"Ich interessiere mich für",buying:"Kaufen",selling:"Verkaufen",budget:"Budget",budgetPh:"Budgetbereich auswählen",budgetOptions:["Unter 100.000 €","100.000–250.000 €","250.000–500.000 €","500.000 €–1 Mio. €","Über 1 Mio. €"],area:"Gebiet",areaPh:"z. B. Berlin Mitte",timing:"Zeitrahmen",timingPh:"Zeitrahmen auswählen",timingOptions:["Sofort","In 3 Monaten","In 6 Monaten","Nur Umschau"],submit:"Makler finden",submitting:"Wird gesendet…",toastSuccess:"Danke! Ein Makler wird sich in Kürze melden.",privacy:"Ihre Daten sind privat und werden nicht ohne Ihre Zustimmung weitergegeben.",invalidPhone:"Bitte geben Sie eine gültige Telefonnummer ein.",requiredFields:"Bitte füllen Sie alle Pflichtfelder aus.",toastError:"Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."}
+};
+
+let lang = "en";
+let intent = "buying";
+
+function applyLang(){
+  const t = T[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const k = el.dataset.i18n; if(t[k]!==undefined) el.textContent = t[k];
+  });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el=>{
+    const k = el.dataset.i18nPh; if(t[k]!==undefined) el.placeholder = t[k];
+  });
+  document.getElementById("langLabel").textContent = lang==="en" ? "🇬🇧 EN" : "🇩🇪 DE";
+  // populate selects
+  const budget = document.getElementById("budget");
+  const cur = budget.value;
+  budget.innerHTML = `<option value="">${t.budgetPh}</option>` + t.budgetOptions.map(o=>`<option value="${o}">${o}</option>`).join("");
+  budget.value = cur;
+  const timing = document.getElementById("timing");
+  const curT = timing.value;
+  timing.innerHTML = `<option value="">${t.timingPh}</option>` + t.timingOptions.map(o=>`<option value="${o}">${o}</option>`).join("");
+  timing.value = curT;
+  document.getElementById("submitLabel").textContent = t.submit;
+  document.title = lang==="en"
+    ? "Maison & Co. — Find Your Dream Home with a Trusted Local Agent"
+    : "Maison & Co. — Finden Sie Ihr Traumhaus mit einem vertrauenswürdigen Makler";
+}
+
+document.getElementById("langBtn").addEventListener("click",()=>{
+  lang = lang==="en" ? "de" : "en";
+  applyLang();
+});
+
+// Header scroll
+const header = document.getElementById("header");
+const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 40);
+window.addEventListener("scroll", onScroll, {passive:true});
+onScroll();
+
+// Intent toggle
+document.querySelectorAll(".toggle-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".toggle-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    intent = btn.dataset.intent;
+  });
+});
+
+// Toast
+function toast(msg, type="success"){
+  const wrap = document.getElementById("toasts");
+  const el = document.createElement("div");
+  el.className = `toast ${type}`;
+  el.textContent = msg;
+  wrap.appendChild(el);
+  setTimeout(()=>{el.style.opacity="0";el.style.transition="opacity .3s";setTimeout(()=>el.remove(),300);}, 4000);
+}
+
+// Form submit
+const phoneRegex = /^[+]?[\d\s().-]{7,20}$/;
+document.getElementById("leadForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const t = T[lang];
+  const data = {
+    name: document.getElementById("name").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    phone: document.getElementById("phone").value.trim(),
+    intent,
+    budget: document.getElementById("budget").value,
+    area: document.getElementById("area").value.trim(),
+    timing: document.getElementById("timing").value,
+    lang
+  };
+  if(!data.name||!data.email||!data.phone||!data.budget||!data.area||!data.timing){
+    return toast(t.requiredFields,"error");
+  }
+  if(!phoneRegex.test(data.phone)){
+    return toast(t.invalidPhone,"error");
+  }
+  const btn = document.getElementById("submitBtn");
+  const label = document.getElementById("submitLabel");
+  btn.disabled = true;
+  btn.innerHTML = `<span class="spinner"></span><span>${t.submitting}</span>`;
+  try{
+    const res = await fetch("/.netlify/functions/airtable-leads",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify(data)
+    });
+    if(!res.ok) throw new Error("Request failed");
+    toast(t.toastSuccess,"success");
+    e.target.reset();
+    intent = "buying";
+    document.querySelectorAll(".toggle-btn").forEach(b=>b.classList.toggle("active", b.dataset.intent==="buying"));
+  }catch(err){
+    console.error(err);
+    toast(t.toastError,"error");
+  }finally{
+    btn.disabled = false;
+    btn.innerHTML = `<span id="submitLabel">${t.submit}</span>`;
+  }
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+applyLang();
+</script>
+</body>
+</html>
