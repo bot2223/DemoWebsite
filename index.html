@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Find Your Dream Home — Maison & Co.</title>
+<meta name="description" content="Boutique real estate brokerage matching discerning buyers and sellers with premium agents across Europe." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    --navy:#0e1430;
+    --navy-2:#161d3f;
+    --gold:#d6b270;
+    --gold-2:#b8924a;
+    --bg:#f7f3ec;
+    --text:#0e1430;
+    --muted:#6b6f80;
+    --border:#e6dfd1;
+    --shadow-elegant: 0 30px 60px -20px rgba(14,20,48,.25), 0 12px 24px -12px rgba(14,20,48,.15);
+    --shadow-soft: 0 8px 24px -8px rgba(14,20,48,.18);
+  }
+  html,body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;letter-spacing:-0.01em}
+  .font-display{font-family:'Playfair Display',Georgia,serif}
+  .text-gold{color:var(--gold)}
+  .bg-gold{background:var(--gold)}
+  .bg-navy{background:var(--navy)}
+  .text-navy{color:var(--navy)}
+  .border-soft{border-color:var(--border)}
+  .gradient-gold{background:linear-gradient(135deg,#e3c182,#b8924a)}
+  .hero-overlay{background:linear-gradient(180deg,rgba(14,20,48,.55) 0%,rgba(14,20,48,.4) 40%,var(--bg) 100%)}
+  .shadow-elegant{box-shadow:var(--shadow-elegant)}
+  .shadow-soft{box-shadow:var(--shadow-soft)}
+  input,select{background:#fff;border:1px solid var(--border);border-radius:.6rem;padding:.7rem .9rem;width:100%;font-size:.95rem;color:var(--text)}
+  input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(214,178,112,.25)}
+  label{font-size:.85rem;font-weight:500;color:var(--text)}
+  .toggle-btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:1px solid var(--border);border-radius:.6rem;padding:.8rem 1rem;font-size:.9rem;font-weight:500;background:#fff;cursor:pointer;transition:all .2s}
+  .toggle-btn.active{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:var(--shadow-soft)}
+  .toggle-btn:hover:not(.active){border-color:var(--gold)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  .fade-up{animation:fadeUp .8s ease-out both}
+  .header-scrolled{background:rgba(14,20,48,.95);backdrop-filter:blur(10px);box-shadow:var(--shadow-soft);border-bottom:1px solid rgba(255,255,255,.1)}
+  .spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.4);border-top-color:#0e1430;border-radius:50%;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .toast{position:fixed;top:1.25rem;left:50%;transform:translateX(-50%) translateY(-20px);background:#fff;color:var(--navy);padding:.8rem 1.2rem;border-radius:.6rem;box-shadow:var(--shadow-elegant);font-size:.9rem;opacity:0;transition:all .3s;z-index:100;border-left:4px solid var(--gold)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .toast.error{border-left-color:#c0392b}
+</style>
+</head>
+<body>
+
+<div id="toast" class="toast"></div>
+
+<!-- Header -->
+<header id="header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+  <div class="mx-auto max-w-7xl px-6 md:px-10 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2">
+      <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1m4 0h1M9 13h1m4 0h1M9 17h1m4 0h1"/></svg>
+      <span class="font-display text-lg md:text-xl font-semibold text-white">Maison & Co.</span>
+    </a>
+    <button id="langBtn" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-white bg-white/10 border border-white/20 hover:bg-white/20 transition">
+      <span id="langLabel">🇬🇧 EN</span>
+    </button>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="relative w-full" style="height:62vh;min-height:480px">
+  <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1920&q=80" alt="Luxury villa" class="absolute inset-0 w-full h-full object-cover" />
+  <div class="absolute inset-0 hero-overlay"></div>
+  <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+    <span class="text-xs md:text-sm uppercase tracking-[0.25em] text-gold font-medium mb-4 fade-up" id="eyebrow">Boutique Real Estate</span>
+    <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-white max-w-3xl leading-tight fade-up" id="heroTitle" style="animation-delay:80ms">Find Your Dream Home with a Trusted Local Agent</h1>
+    <p class="mt-5 text-base md:text-lg text-white/85 max-w-xl fade-up" id="heroSub" style="animation-delay:160ms">We match discerning buyers and sellers with handpicked premium agents across Europe.</p>
+  </div>
+</section>
+
+<!-- Form -->
+<section class="px-6 pb-24">
+  <div class="mx-auto max-w-2xl -mt-24 md:-mt-32 relative z-20">
+    <form id="leadForm" class="bg-white rounded-2xl p-6 md:p-10 border border-soft shadow-elegant fade-up" style="animation-delay:200ms">
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="space-y-2"><label for="name" id="lblName">Full Name *</label><input id="name" name="name" maxlength="100" required /></div>
+        <div class="space-y-2"><label for="email" id="lblEmail">Email *</label><input id="email" name="email" type="email" maxlength="255" required /></div>
+      </div>
+      <div class="space-y-2 mt-5"><label for="phone" id="lblPhone">Phone *</label><input id="phone" name="phone" type="tel" maxlength="20" required /></div>
+
+      <div class="space-y-2 mt-5">
+        <label id="lblIntent">I am... *</label>
+        <div class="flex gap-3">
+          <button type="button" id="btnBuy" class="toggle-btn active" data-intent="buying">🏠 <span id="lblBuy">Buying</span></button>
+          <button type="button" id="btnSell" class="toggle-btn" data-intent="selling">🔑 <span id="lblSell">Selling</span></button>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5 mt-5">
+        <div class="space-y-2">
+          <label for="budget" id="lblBudget">Budget *</label>
+          <select id="budget" name="budget" required>
+            <option value="" disabled selected id="optBudgetPh">Select your budget</option>
+          </select>
+        </div>
+        <div class="space-y-2"><label for="area" id="lblArea">Preferred Area *</label><input id="area" name="area" maxlength="100" required /></div>
+      </div>
+
+      <div class="space-y-2 mt-5">
+        <label for="timing" id="lblTiming">Timeline *</label>
+        <select id="timing" name="timing" required>
+          <option value="" disabled selected id="optTimingPh">When are you looking to act?</option>
+        </select>
+      </div>
+
+      <button type="submit" id="submitBtn" class="mt-8 w-full h-12 text-base font-semibold rounded-xl text-navy gradient-gold shadow-soft hover:scale-[1.01] active:scale-[0.99] transition flex items-center justify-center gap-2">
+        <span id="submitLabel">Get Me An Agent</span>
+      </button>
+      <p class="mt-4 text-xs text-center" style="color:var(--muted)" id="privacy">Your details are private and only shared with your matched agent.</p>
+    </form>
+  </div>
+</section>
+
+<footer class="border-t border-soft py-8 text-center text-xs" style="color:var(--muted)">
+  © <span id="year"></span> Maison & Co. — Premium Real Estate
+</footer>
+
+<script>
+// ---- i18n ----
+const T = {
+  en:{eyebrow:"Boutique Real Estate",heroTitle:"Find Your Dream Home with a Trusted Local Agent",heroSub:"We match discerning buyers and sellers with handpicked premium agents across Europe.",
+    name:"Full Name *",email:"Email *",phone:"Phone *",intent:"I am... *",buying:"Buying",selling:"Selling",budget:"Budget *",budgetPh:"Select your budget",
+    area:"Preferred Area *",timing:"Timeline *",timingPh:"When are you looking to act?",submit:"Get Me An Agent",submitting:"Sending...",
+    privacy:"Your details are private and only shared with your matched agent.",
+    budgetOptions:["Under €500k","€500k – €1M","€1M – €2M","€2M – €5M","€5M+"],
+    timingOptions:["Within 1 month","1–3 months","3–6 months","6–12 months","Just exploring"],
+    success:"Thank you! An agent will reach out within 24 hours.",required:"Please fill in all required fields.",invalidPhone:"Please enter a valid phone number."},
+  de:{eyebrow:"Boutique Immobilien",heroTitle:"Finden Sie Ihr Traumhaus mit einem vertrauenswürdigen Makler",heroSub:"Wir vermitteln anspruchsvollen Käufern und Verkäufern handverlesene Premium-Makler in ganz Europa.",
+    name:"Vollständiger Name *",email:"E-Mail *",phone:"Telefon *",intent:"Ich möchte... *",buying:"Kaufen",selling:"Verkaufen",budget:"Budget *",budgetPh:"Budget wählen",
+    area:"Bevorzugte Region *",timing:"Zeitrahmen *",timingPh:"Wann möchten Sie handeln?",submit:"Makler anfordern",submitting:"Wird gesendet...",
+    privacy:"Ihre Daten sind vertraulich und werden nur an Ihren Makler weitergegeben.",
+    budgetOptions:["Unter 500k €","500k – 1M €","1M – 2M €","2M – 5M €","5M+ €"],
+    timingOptions:["Innerhalb von 1 Monat","1–3 Monate","3–6 Monate","6–12 Monate","Nur Umschau"],
+    success:"Vielen Dank! Ein Makler meldet sich innerhalb von 24 Stunden.",required:"Bitte füllen Sie alle Pflichtfelder aus.",invalidPhone:"Bitte gültige Telefonnummer eingeben."}
+};
+
+let lang = "en";
+const $ = id => document.getElementById(id);
+
+function applyLang(){
+  const t = T[lang];
+  $("eyebrow").textContent = t.eyebrow;
+  $("heroTitle").textContent = t.heroTitle;
+  $("heroSub").textContent = t.heroSub;
+  $("lblName").textContent = t.name;
+  $("lblEmail").textContent = t.email;
+  $("lblPhone").textContent = t.phone;
+  $("lblIntent").textContent = t.intent;
+  $("lblBuy").textContent = t.buying;
+  $("lblSell").textContent = t.selling;
+  $("lblBudget").textContent = t.budget;
+  $("optBudgetPh").textContent = t.budgetPh;
+  $("lblArea").textContent = t.area;
+  $("lblTiming").textContent = t.timing;
+  $("optTimingPh").textContent = t.timingPh;
+  $("submitLabel").textContent = t.submit;
+  $("privacy").textContent = t.privacy;
+  $("langLabel").textContent = lang === "en" ? "🇬🇧 EN" : "🇩🇪 DE";
+  // budget options
+  const b = $("budget"); [...b.querySelectorAll("option:not([disabled])")].forEach(o=>o.remove());
+  t.budgetOptions.forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;b.appendChild(o)});
+  const tm = $("timing"); [...tm.querySelectorAll("option:not([disabled])")].forEach(o=>o.remove());
+  t.timingOptions.forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;tm.appendChild(o)});
+}
+
+$("langBtn").addEventListener("click", () => { lang = lang === "en" ? "de" : "en"; applyLang(); });
+
+// intent toggle
+let intent = "buying";
+document.querySelectorAll("[data-intent]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    intent = btn.dataset.intent;
+    document.querySelectorAll("[data-intent]").forEach(b => b.classList.toggle("active", b === btn));
+  });
+});
+
+// scroll header
+const header = $("header");
+const onScroll = () => header.classList.toggle("header-scrolled", window.scrollY > 40);
+window.addEventListener("scroll", onScroll, { passive:true }); onScroll();
+
+// toast
+function toast(msg, error=false){
+  const el = $("toast"); el.textContent = msg;
+  el.classList.toggle("error", error); el.classList.add("show");
+  setTimeout(()=>el.classList.remove("show"), 3500);
+}
+
+// form
+const phoneRegex = /^[+]?[\d\s().-]{7,20}$/;
+$("leadForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const t = T[lang];
+  const data = {
+    name: $("name").value.trim(), email: $("email").value.trim(), phone: $("phone").value.trim(),
+    intent, budget: $("budget").value, area: $("area").value.trim(), timing: $("timing").value, lang
+  };
+  if(!data.name||!data.email||!data.phone||!data.budget||!data.area||!data.timing) return toast(t.required, true);
+  if(!phoneRegex.test(data.phone)) return toast(t.invalidPhone, true);
+
+  const btn = $("submitBtn"), label = $("submitLabel");
+  btn.disabled = true; label.textContent = t.submitting;
+  const sp = document.createElement("span"); sp.className="spinner"; btn.prepend(sp);
+
+  try{
+    const res = await fetch("/.netlify/functions/airtable-leads", {
+      method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(data)
+    });
+    if(!res.ok) throw new Error("fail");
+    toast(t.success);
+    e.target.reset();
+    intent = "buying";
+    document.querySelectorAll("[data-intent]").forEach(b=>b.classList.toggle("active", b.dataset.intent==="buying"));
+  }catch(err){ toast(t.required, true); }
+  finally{ sp.remove(); btn.disabled=false; label.textContent = t.submit; }
+});
+
+$("year").textContent = new Date().getFullYear();
+applyLang();
+</script>
+</body>
+</html>
