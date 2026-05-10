@@ -779,19 +779,34 @@ document.getElementById("leadForm").addEventListener("submit",async(e)=>{
   };
   if(!data.name||!data.email||!phoneRaw||!data.budget||!data.area||!data.timing) return toast(t.requiredFields,"error");
   if(!/^\d[\d\s().-]{4,18}$/.test(phoneRaw)) return toast(t.invalidPhone,"error");
+
   const btn=document.getElementById("submitBtn");
+  const resetBtn=()=>{btn.disabled=false;btn.innerHTML=`<span id="submitLabel">${T[lang].submit}</span>`;};
   btn.disabled=true;
   btn.innerHTML=`<span class="spinner"></span><span>${t.submitting}</span>`;
+
+  let success=false;
   try{
     const res=await fetch("/api/airtable-leads",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
-    if(!res.ok){const d=await res.json().catch(()=>({}));console.error("Error",res.status,d);throw new Error(res.status);}
+    if(!res.ok){
+      const d=await res.json().catch(()=>({}));
+      console.error("Error",res.status,d);
+      resetBtn();
+      toast(t.toastError,"error");
+      return;
+    }
+    success=true;
     toast(t.toastSuccess,"success");
     e.target.reset();
     intent="buying";
     document.querySelectorAll(".toggle-btn").forEach(b=>b.classList.toggle("active",b.dataset.intent==="buying"));
     applyLang();
-  }catch(err){console.error(err);toast(t.toastError,"error");}
-  finally{btn.disabled=false;btn.innerHTML=`<span id="submitLabel">${T[lang].submit}</span>`;}
+    resetBtn();
+  }catch(err){
+    console.error(err);
+    if(!success) toast(t.toastError,"error");
+    resetBtn();
+  }
 });
 
 // Reveal on scroll
