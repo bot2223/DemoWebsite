@@ -47,7 +47,6 @@ export default async function handler(req, res) {
 
   const now = new Date();
   const dateStr = now.toISOString().slice(0, 10);
-  const timeStr = now.toTimeString().slice(0, 5);
 
   const airtableRes = await fetch(
     `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(table)}`,
@@ -68,7 +67,6 @@ export default async function handler(req, res) {
             Area: area,
             Timing: timing,
             Date: dateStr,
-            Time: timeStr,
           },
         }],
         typecast: true,
