@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Maison & Co. — Find Your Dream Home with a Trusted Local Agent</title>
+<meta name="description" content="Boutique real estate brokerage matching discerning buyers and sellers with handpicked premium agents across Europe." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --navy:#0f1824;
+  --navy-80:rgba(15,24,36,0.8);
+  --gold:#c9a84c;
+  --gold-light:#e2c278;
+  --gold-soft:#faf6ee;
+  --cream:#f9f7f4;
+  --white:#ffffff;
+  --fg:#1a1f2e;
+  --fg-mid:#4a5568;
+  --fg-light:#8896a4;
+  --border:#e8e4dc;
+  --border-focus:#c9a84c;
+  --radius-sm:8px;
+  --radius-md:12px;
+  --radius-lg:20px;
+  --radius-xl:28px;
+  --shadow-sm:0 1px 4px rgba(0,0,0,0.06);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg:0 12px 40px rgba(0,0,0,0.12);
+  --shadow-xl:0 24px 64px rgba(15,24,36,0.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--cream);color:var(--fg);font-family:'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6}
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+a{color:inherit;text-decoration:none}
+img{display:block}
+
+/* ── HEADER ── */
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .35s ease}
+header.scrolled{background:rgba(15,24,36,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav{max-width:1160px;margin:0 auto;padding:20px 32px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;letter-spacing:0.02em}
+.brand-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.brand-icon svg{width:16px;height:16px;color:#fff;stroke-width:2}
+.lang-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.85);font:500 13px 'DM Sans',sans-serif;cursor:pointer;transition:all .2s;letter-spacing:0.01em}
+.lang-btn:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);color:#fff}
+
+/* ── HERO ── */
+.hero{position:relative;width:100%;height:68vh;min-height:520px;overflow:hidden;background:linear-gradient(135deg,#0f1824 0%,#1a2d45 50%,#0f1824 100%)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(15,24,36,0.45) 0%,rgba(15,24,36,0.75) 100%)}
+.hero-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;color:#fff;padding-bottom:60px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-light);font-weight:500;margin-bottom:20px}
+.eyebrow-line{display:block;width:28px;height:1px;background:var(--gold-light);opacity:0.6}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(38px,5.5vw,68px);line-height:1.06;max-width:780px;letter-spacing:-0.01em}
+.hero p{margin-top:18px;font-size:clamp(14px,1.8vw,17px);max-width:480px;color:rgba(255,255,255,0.75);font-weight:300;line-height:1.7}
+
+/* ── FORM CARD ── */
+.form-wrap{max-width:640px;margin:-120px auto 0;padding:0 20px 100px;position:relative;z-index:10}
+@media(min-width:768px){.form-wrap{margin-top:-150px}}
+.card{background:var(--white);border:1px solid rgba(0,0,0,0.06);border-radius:var(--radius-xl);padding:36px 32px;box-shadow:var(--shadow-xl)}
+@media(min-width:600px){.card{padding:48px 44px}}
+
+.card-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--fg);margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.card-title-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+.form-row{display:grid;gap:16px;margin-top:16px}
+.form-row:first-of-type{margin-top:0}
+@media(min-width:540px){.form-row.cols-2{grid-template-columns:1fr 1fr}}
+.field{display:flex;flex-direction:column;gap:6px}
+label{font-size:12px;font-weight:600;color:var(--fg-mid);letter-spacing:0.06em;text-transform:uppercase}
+input,select{
+  width:100%;height:48px;padding:0 16px;
+  border-radius:var(--radius-sm);
+  border:1.5px solid var(--border);
+  background:var(--cream);
+  color:var(--fg);
+  font:400 15px 'DM Sans',sans-serif;
+  transition:border-color .15s,background .15s,box-shadow .15s;
+}
+select{appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238896a4' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;background-color:var(--cream)}
+input:focus,select:focus{outline:none;border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(201,168,76,0.15)}
+input::placeholder{color:var(--fg-light)}
+
+/* Phone */
+.phone-row{display:flex;gap:10px}
+.phone-input{flex:1}
+.cc-picker{flex:0 0 148px;width:148px;position:relative;user-select:none}
+.cc-trigger{display:flex;align-items:center;gap:7px;width:100%;height:48px;padding:0 12px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--cream);cursor:pointer;transition:border-color .15s,background .15s,box-shadow .15s;box-sizing:border-box}
+.cc-trigger:focus,.cc-trigger.open{outline:none;border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(201,168,76,0.15)}
+.cc-flag{font-size:17px;line-height:1;flex-shrink:0}
+.cc-code{font:500 13px 'DM Sans',sans-serif;color:var(--fg);flex:1;text-align:left}
+.cc-chevron{flex-shrink:0;width:13px;height:13px;color:var(--fg-light);transition:transform .2s}
+.cc-trigger.open .cc-chevron{transform:rotate(180deg)}
+.cc-dropdown{position:absolute;top:calc(100% + 8px);left:0;width:290px;background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);z-index:200;overflow:hidden;animation:ccFade .15s ease-out}
+@keyframes ccFade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.cc-search-wrap{padding:10px;border-bottom:1px solid var(--border)}
+.cc-search{width:100%;height:38px;padding:0 12px 0 36px;border-radius:var(--radius-sm);border:1.5px solid var(--border);font:400 14px 'DM Sans',sans-serif;color:var(--fg);background:var(--cream) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%238896a4' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat 11px center;transition:border-color .15s}
+.cc-search:focus{outline:none;border-color:var(--gold);background-color:var(--white)}
+.cc-list{max-height:216px;overflow-y:auto;padding:6px}
+.cc-list::-webkit-scrollbar{width:3px}
+.cc-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.cc-option{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;cursor:pointer;transition:background .1s}
+.cc-option:hover,.cc-option.focused{background:var(--gold-soft)}
+.cc-option.selected{background:var(--gold-soft)}
+.cc-opt-flag{font-size:16px;flex-shrink:0}
+.cc-opt-name{font-size:13px;color:var(--fg);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cc-opt-code{font-size:11px;color:var(--fg-light);font-weight:600;flex-shrink:0}
+.cc-empty{padding:18px;text-align:center;font-size:13px;color:var(--fg-light)}
+[hidden]{display:none!important}
+
+/* Toggle */
+.toggle-label{font-size:12px;font-weight:600;color:var(--fg-mid);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
+.toggle-group{display:flex;gap:8px;background:var(--cream);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:4px}
+.toggle-btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 14px;border-radius:6px;border:none;background:transparent;color:var(--fg-mid);font:500 14px 'DM Sans',sans-serif;cursor:pointer;transition:all .18s}
+.toggle-btn svg{width:14px;height:14px;flex-shrink:0}
+.toggle-btn.active{background:var(--navy);color:#fff;box-shadow:0 2px 8px rgba(15,24,36,0.2)}
+
+/* Submit */
+.submit{
+  margin-top:24px;width:100%;height:54px;border:none;
+  border-radius:var(--radius-md);
+  background:linear-gradient(135deg,var(--gold) 0%,#b8922e 100%);
+  color:#fff;
+  font:600 15px 'DM Sans',sans-serif;
+  letter-spacing:0.03em;
+  cursor:pointer;
+  box-shadow:0 4px 20px rgba(201,168,76,0.4);
+  transition:transform .15s,box-shadow .15s;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+}
+.submit:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 28px rgba(201,168,76,0.5)}
+.submit:active:not(:disabled){transform:translateY(0);box-shadow:0 2px 8px rgba(201,168,76,0.3)}
+.submit:disabled{opacity:0.6;cursor:not-allowed}
+.spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.privacy-note{margin-top:14px;font-size:12px;color:var(--fg-light);text-align:center;display:flex;align-items:center;justify-content:center;gap:5px}
+.privacy-note svg{width:11px;height:11px;opacity:.5;flex-shrink:0}
+
+/* ── STATS ── */
+.stats{background:var(--navy);padding:0 24px}
+.stats-inner{max-width:880px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)}
+@media(max-width:560px){.stats-inner{grid-template-columns:1fr}}
+.stat-item{text-align:center;padding:52px 20px;position:relative}
+.stat-item:not(:last-child)::after{content:'';position:absolute;right:0;top:30%;bottom:30%;width:1px;background:rgba(255,255,255,0.07)}
+@media(max-width:560px){.stat-item:not(:last-child)::after{display:none;border-bottom:1px solid rgba(255,255,255,0.07)}}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,6vw,64px);font-weight:600;color:var(--gold-light);line-height:1}
+.stat-label{margin-top:10px;font-size:10.5px;color:rgba(255,255,255,0.4);letter-spacing:0.18em;text-transform:uppercase}
+
+/* ── WHY ── */
+.why{padding:112px 24px;background:var(--cream)}
+.section-header{text-align:center;margin-bottom:64px}
+.section-eyebrow{display:inline-block;font-size:10px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px;padding:5px 14px;background:var(--gold-soft);border-radius:999px;border:1px solid rgba(201,168,76,0.2)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.8vw,46px);font-weight:600;line-height:1.1;color:var(--fg)}
+.section-sub{margin-top:16px;color:var(--fg-mid);font-size:15px;max-width:480px;margin-left:auto;margin-right:auto;font-weight:300;line-height:1.75}
+.why-grid{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:700px){.why-grid{grid-template-columns:1fr;max-width:420px}}
+.why-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px 30px;position:relative;transition:transform .22s,box-shadow .22s}
+.why-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.why-num{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:0.2em;color:var(--gold);font-weight:600;text-transform:uppercase;margin-bottom:20px;opacity:0.7}
+.why-icon{width:44px;height:44px;background:var(--gold-soft);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;border:1px solid rgba(201,168,76,0.15)}
+.why-icon svg{width:20px;height:20px;color:var(--gold)}
+.why-card h3{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;margin-bottom:10px;line-height:1.25;color:var(--fg)}
+.why-card p{font-size:14px;color:var(--fg-mid);line-height:1.8;font-weight:300}
+
+/* ── TESTIMONIALS ── */
+.testimonials{padding:112px 24px;background:var(--navy);position:relative}
+.testimonials .section-eyebrow{background:rgba(201,168,76,0.12);border-color:rgba(201,168,76,0.25);color:var(--gold-light)}
+.testimonials .section-title{color:#fff}
+.testimonials .section-sub{color:rgba(255,255,255,0.5)}
+.testi-grid{max-width:1020px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:780px){.testi-grid{grid-template-columns:1fr;max-width:440px}}
+.testi-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:32px 28px;transition:background .22s,border-color .22s}
+.testi-card:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.14)}
+.testi-stars{display:flex;gap:3px;margin-bottom:18px}
+.testi-stars svg{width:12px;height:12px;fill:var(--gold);color:var(--gold)}
+.testi-text{font-size:14.5px;color:rgba(255,255,255,0.75);line-height:1.8;font-weight:300;margin-bottom:24px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:12px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.07)}
+.testi-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:700;color:var(--navy);flex-shrink:0}
+.testi-name{font-size:13px;font-weight:600;color:#fff}
+.testi-city{font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px}
+
+/* ── FOOTER ── */
+footer{background:#080f18;padding:60px 24px 32px}
+.footer-inner{max-width:960px;margin:0 auto}
+.footer-top{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:36px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.footer-brand{display:flex;align-items:center;gap:10px;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:#fff}
+.footer-brand .brand-icon{width:28px;height:28px}
+.footer-brand .brand-icon svg{width:14px;height:14px}
+.footer-desc{margin-top:12px;font-size:13px;color:rgba(255,255,255,0.35);max-width:240px;line-height:1.75;font-weight:300}
+.footer-links{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.footer-link{font-size:12.5px;color:rgba(255,255,255,0.45);padding:7px 15px;border:1px solid rgba(255,255,255,0.1);border-radius:999px;transition:color .18s,border-color .18s;display:inline-flex;align-items:center;gap:6px}
+.footer-link:hover{color:rgba(255,255,255,0.9);border-color:rgba(255,255,255,0.25)}
+.footer-link.email{color:var(--gold-light);border-color:rgba(201,168,76,0.2)}
+.footer-link.email:hover{border-color:rgba(201,168,76,0.5)}
+.footer-link svg{width:12px;height:12px}
+.footer-bottom{padding-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;font-size:11.5px;color:rgba(255,255,255,0.22)}
+
+/* ── TOAST ── */
+.toast-wrap{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:999;display:flex;flex-direction:column;gap:8px;pointer-events:none;width:max-content;max-width:92vw}
+.toast{pointer-events:auto;background:var(--white);border:1px solid var(--border);box-shadow:var(--shadow-lg);padding:13px 18px;border-radius:var(--radius-md);font-size:13.5px;animation:toastIn .25s ease-out}
+.toast.success{border-left:3px solid var(--gold)}
+.toast.error{border-left:3px solid #e53e3e}
+@keyframes toastIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+</style>
+</head>
+<body>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="nav">
+    <a href="/" class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1m4 0h1M9 13h1m4 0h1M9 17h6"/></svg>
+      </div>
+      <span data-i18n="brand">Maison & Co.</span>
+    </a>
+    <button class="lang-btn" id="langBtn" aria-label="Toggle language">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></svg>
+      <span id="langLabel">🇬🇧 EN</span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img
+    id="heroImg"
+    src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&q=80&auto=format&fit=crop"
+    alt="Luxury villa with infinity pool"
+    onerror="
+      const fallbacks=[
+        'https://source.unsplash.com/1920x1080/?luxury,villa,pool',
+        'https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?w=1920&h=1080&fit=crop',
+        'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?w=1920&h=1080&fit=crop',
+        'https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?w=1920&h=1080&fit=crop'
+      ];
+      if(!this._fi) this._fi=0;
+      if(this._fi < fallbacks.length){ this.src=fallbacks[this._fi++]; } else { this.style.display='none'; }
+    "
+  />
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="eyebrow">Premium Real Estate</span><span class="eyebrow-line"></span></div>
+    <h1 class="serif" data-i18n="heroTitle">Find Your Dream Home Today</h1>
+    <p data-i18n="heroSubtitle">Tell us what you're looking for — we'll match you with the perfect agent.</p>
+  </div>
+</section>
+
+<!-- FORM -->
+<div class="form-wrap">
+  <form class="card" id="leadForm" novalidate>
+    <div class="form-row cols-2">
+      <div class="field">
+        <label for="name"><span data-i18n="fullName">Full Name</span> *</label>
+        <input id="name" type="text" maxlength="100" data-i18n-ph="fullNamePh" placeholder="Jane Doe" />
+      </div>
+      <div class="field">
+        <label for="email"><span data-i18n="email">Email Address</span> *</label>
+        <input id="email" type="email" maxlength="255" data-i18n-ph="emailPh" placeholder="jane@example.com" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field">
+        <label><span data-i18n="phone">Phone Number</span> *</label>
+        <div class="phone-row">
+          <div class="cc-picker" id="ccPicker">
+            <button type="button" class="cc-trigger" id="ccTrigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="cc-flag" id="ccFlag">🇩🇪</span>
+              <span class="cc-code" id="ccCode">+49</span>
+              <svg class="cc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="cc-dropdown" id="ccDropdown" hidden>
+              <div class="cc-search-wrap">
+                <input type="text" class="cc-search" id="ccSearch" placeholder="Search country…" autocomplete="off" />
+              </div>
+              <div class="cc-list" id="ccList" role="listbox"></div>
+            </div>
+          </div>
+          <input id="phone" type="tel" maxlength="20" class="phone-input" data-i18n-ph="phonePh" placeholder="30 1234567" />
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field">
+        <div class="toggle-label" data-i18n="intent">I'm interested in</div>
+        <div class="toggle-group">
+          <button type="button" class="toggle-btn active" data-intent="buying">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span data-i18n="buying">Buying</span>
+          </button>
+          <button type="button" class="toggle-btn" data-intent="selling">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/></svg>
+            <span data-i18n="selling">Selling</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="form-row cols-2">
+      <div class="field">
+        <label for="budget"><span id="budgetLabel" data-i18n="budget">Budget</span> *</label>
+        <select id="budget"></select>
+      </div>
+      <div class="field">
+        <label for="area"><span data-i18n="area">Area</span> *</label>
+        <input id="area" type="text" maxlength="100" data-i18n-ph="areaPh" placeholder="e.g. Berlin Mitte" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field">
+        <label for="timing"><span data-i18n="timing">Timing</span> *</label>
+        <select id="timing"></select>
+      </div>
+    </div>
+    <button type="submit" class="submit" id="submitBtn">
+      <span id="submitLabel" data-i18n="submit">Get Me An Agent</span>
+    </button>
+    <p class="privacy-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <span data-i18n="privacy">Your information is private and never shared without consent.</span>
+    </p>
+  </form>
+</div>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num serif" data-i18n="stat1num">500+</div>
+      <div class="stat-label" data-i18n="stat1label">Happy Clients</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-num serif" data-i18n="stat2num">98%</div>
+      <div class="stat-label" data-i18n="stat2label">Satisfaction Rate</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-num serif" data-i18n="stat3num">12</div>
+      <div class="stat-label" data-i18n="stat3label">Cities Covered</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why">
+  <div class="section-header reveal">
+    <div class="section-eyebrow" data-i18n="whyEyebrow">Why Choose Us</div>
+    <h2 class="serif section-title" data-i18n="whyTitle">A Better Way to Find Your Agent</h2>
+    <p class="section-sub" data-i18n="whySub">We've reimagined the agent-matching process so you get the right expert, faster.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-num">01</div>
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a7 7 0 0 1 7 7c0 3-2 5.5-4.5 6.5L16 22H8l1.5-6.5C7 14.5 5 12 5 9a7 7 0 0 1 7-7z"/></svg>
+      </div>
+      <h3 class="serif" data-i18n="why1title">Instant AI Matching</h3>
+      <p data-i18n="why1desc">We match you with the right agent within minutes using smart AI — no waiting, no back-and-forth.</p>
+    </div>
+    <div class="why-card reveal reveal-delay-1">
+      <div class="why-num">02</div>
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+      <h3 class="serif" data-i18n="why2title">Verified Agents Only</h3>
+      <p data-i18n="why2desc">Every agent in our network is handpicked, background checked, and held to the highest professional standards.</p>
+    </div>
+    <div class="why-card reveal reveal-delay-2">
+      <div class="why-num">03</div>
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <h3 class="serif" data-i18n="why3title">Completely Free</h3>
+      <p data-i18n="why3desc">Our matching service costs you absolutely nothing. We're paid by agents, not clients. Zero hidden fees, ever.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header reveal">
+    <div class="section-eyebrow" data-i18n="testiEyebrow">Client Stories</div>
+    <h2 class="serif section-title" data-i18n="testiTitle">What Our Clients Say</h2>
+    <p class="section-sub" data-i18n="testiSub">Real people, real results. Here's what they experienced working with Maison & Co.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="testi-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="testi-text" data-i18n="testi1text">I found my perfect apartment in Prenzlauer Berg within two weeks. The agent they matched me with knew the neighbourhood inside out — truly exceptional.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">SM</div>
+        <div><div class="testi-name" data-i18n="testi1name">Sarah M.</div><div class="testi-city" data-i18n="testi1city">Berlin, Germany</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="quote-mark">"</div>
+      <div class="testi-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="testi-text" data-i18n="testi2text">Sold my flat above asking price in just 10 days. Maison & Co. matched me with an agent who had already sold three properties on my street. Absolutely recommended.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">JK</div>
+        <div><div class="testi-name" data-i18n="testi2name">James K.</div><div class="testi-city" data-i18n="testi2city">Munich, Germany</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="quote-mark">"</div>
+      <div class="testi-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="testi-text" data-i18n="testi3text">As a first-time buyer relocating from abroad, I was nervous. The agent Maison & Co. found for me guided me through every step. I felt completely supported the whole way.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">PS</div>
+        <div><div class="testi-name" data-i18n="testi3name">Priya S.</div><div class="testi-city" data-i18n="testi3city">Hamburg, Germany</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1m4 0h1M9 13h1m4 0h1M9 17h6"/></svg>
+          </div>
+          Maison & Co.
+        </div>
+        <p class="footer-desc" data-i18n="footerDesc">Boutique real estate matching for discerning buyers and sellers across Europe.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:hello@maisonco.eu" class="footer-link email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          hello@maisonco.eu
+        </a>
+        <a href="#" class="footer-link" data-i18n="footerPrivacy">Privacy Policy</a>
+        <a href="#" class="footer-link" data-i18n="footerTerms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Maison & Co. — <span data-i18n="footerRights">All rights reserved.</span></span>
+      <span data-i18n="footerTagline">Premium Real Estate · Europe</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── COUNTRY PICKER ──
+const COUNTRIES = [
+  {code:"+93",flag:"🇦🇫",name:"Afghanistan"},{code:"+355",flag:"🇦🇱",name:"Albania"},
+  {code:"+213",flag:"🇩🇿",name:"Algeria"},{code:"+376",flag:"🇦🇩",name:"Andorra"},
+  {code:"+244",flag:"🇦🇴",name:"Angola"},{code:"+54",flag:"🇦🇷",name:"Argentina"},
+  {code:"+374",flag:"🇦🇲",name:"Armenia"},{code:"+61",flag:"🇦🇺",name:"Australia"},
+  {code:"+43",flag:"🇦🇹",name:"Austria"},{code:"+994",flag:"🇦🇿",name:"Azerbaijan"},
+  {code:"+973",flag:"🇧🇭",name:"Bahrain"},{code:"+880",flag:"🇧🇩",name:"Bangladesh"},
+  {code:"+375",flag:"🇧🇾",name:"Belarus"},{code:"+32",flag:"🇧🇪",name:"Belgium"},
+  {code:"+501",flag:"🇧🇿",name:"Belize"},{code:"+229",flag:"🇧🇯",name:"Benin"},
+  {code:"+975",flag:"🇧🇹",name:"Bhutan"},{code:"+591",flag:"🇧🇴",name:"Bolivia"},
+  {code:"+387",flag:"🇧🇦",name:"Bosnia"},{code:"+267",flag:"🇧🇼",name:"Botswana"},
+  {code:"+55",flag:"🇧🇷",name:"Brazil"},{code:"+673",flag:"🇧🇳",name:"Brunei"},
+  {code:"+359",flag:"🇧🇬",name:"Bulgaria"},{code:"+226",flag:"🇧🇫",name:"Burkina Faso"},
+  {code:"+257",flag:"🇧🇮",name:"Burundi"},{code:"+855",flag:"🇰🇭",name:"Cambodia"},
+  {code:"+237",flag:"🇨🇲",name:"Cameroon"},{code:"+1",flag:"🇨🇦",name:"Canada"},
+  {code:"+238",flag:"🇨🇻",name:"Cape Verde"},{code:"+236",flag:"🇨🇫",name:"Central African Rep."},
+  {code:"+235",flag:"🇹🇩",name:"Chad"},{code:"+56",flag:"🇨🇱",name:"Chile"},
+  {code:"+86",flag:"🇨🇳",name:"China"},{code:"+57",flag:"🇨🇴",name:"Colombia"},
+  {code:"+269",flag:"🇰🇲",name:"Comoros"},{code:"+242",flag:"🇨🇬",name:"Congo"},
+  {code:"+506",flag:"🇨🇷",name:"Costa Rica"},{code:"+385",flag:"🇭🇷",name:"Croatia"},
+  {code:"+53",flag:"🇨🇺",name:"Cuba"},{code:"+357",flag:"🇨🇾",name:"Cyprus"},
+  {code:"+420",flag:"🇨🇿",name:"Czech Republic"},{code:"+45",flag:"🇩🇰",name:"Denmark"},
+  {code:"+253",flag:"🇩🇯",name:"Djibouti"},{code:"+1",flag:"🇩🇴",name:"Dominican Rep."},
+  {code:"+593",flag:"🇪🇨",name:"Ecuador"},{code:"+20",flag:"🇪🇬",name:"Egypt"},
+  {code:"+503",flag:"🇸🇻",name:"El Salvador"},{code:"+240",flag:"🇬🇶",name:"Equatorial Guinea"},
+  {code:"+291",flag:"🇪🇷",name:"Eritrea"},{code:"+372",flag:"🇪🇪",name:"Estonia"},
+  {code:"+251",flag:"🇪🇹",name:"Ethiopia"},{code:"+679",flag:"🇫🇯",name:"Fiji"},
+  {code:"+358",flag:"🇫🇮",name:"Finland"},{code:"+33",flag:"🇫🇷",name:"France"},
+  {code:"+241",flag:"🇬🇦",name:"Gabon"},{code:"+220",flag:"🇬🇲",name:"Gambia"},
+  {code:"+995",flag:"🇬🇪",name:"Georgia"},{code:"+49",flag:"🇩🇪",name:"Germany"},
+  {code:"+233",flag:"🇬🇭",name:"Ghana"},{code:"+30",flag:"🇬🇷",name:"Greece"},
+  {code:"+502",flag:"🇬🇹",name:"Guatemala"},{code:"+224",flag:"🇬🇳",name:"Guinea"},
+  {code:"+592",flag:"🇬🇾",name:"Guyana"},{code:"+509",flag:"🇭🇹",name:"Haiti"},
+  {code:"+504",flag:"🇭🇳",name:"Honduras"},{code:"+36",flag:"🇭🇺",name:"Hungary"},
+  {code:"+354",flag:"🇮🇸",name:"Iceland"},{code:"+91",flag:"🇮🇳",name:"India"},
+  {code:"+62",flag:"🇮🇩",name:"Indonesia"},{code:"+98",flag:"🇮🇷",name:"Iran"},
+  {code:"+964",flag:"🇮🇶",name:"Iraq"},{code:"+353",flag:"🇮🇪",name:"Ireland"},
+  {code:"+972",flag:"🇮🇱",name:"Israel"},{code:"+39",flag:"🇮🇹",name:"Italy"},
+  {code:"+225",flag:"🇨🇮",name:"Ivory Coast"},{code:"+1876",flag:"🇯🇲",name:"Jamaica"},
+  {code:"+81",flag:"🇯🇵",name:"Japan"},{code:"+962",flag:"🇯🇴",name:"Jordan"},
+  {code:"+7",flag:"🇰🇿",name:"Kazakhstan"},{code:"+254",flag:"🇰🇪",name:"Kenya"},
+  {code:"+965",flag:"🇰🇼",name:"Kuwait"},{code:"+996",flag:"🇰🇬",name:"Kyrgyzstan"},
+  {code:"+856",flag:"🇱🇦",name:"Laos"},{code:"+371",flag:"🇱🇻",name:"Latvia"},
+  {code:"+961",flag:"🇱🇧",name:"Lebanon"},{code:"+266",flag:"🇱🇸",name:"Lesotho"},
+  {code:"+231",flag:"🇱🇷",name:"Liberia"},{code:"+218",flag:"🇱🇾",name:"Libya"},
+  {code:"+423",flag:"🇱🇮",name:"Liechtenstein"},{code:"+370",flag:"🇱🇹",name:"Lithuania"},
+  {code:"+352",flag:"🇱🇺",name:"Luxembourg"},{code:"+261",flag:"🇲🇬",name:"Madagascar"},
+  {code:"+265",flag:"🇲🇼",name:"Malawi"},{code:"+60",flag:"🇲🇾",name:"Malaysia"},
+  {code:"+960",flag:"🇲🇻",name:"Maldives"},{code:"+223",flag:"🇲🇱",name:"Mali"},
+  {code:"+356",flag:"🇲🇹",name:"Malta"},{code:"+222",flag:"🇲🇷",name:"Mauritania"},
+  {code:"+230",flag:"🇲🇺",name:"Mauritius"},{code:"+52",flag:"🇲🇽",name:"Mexico"},
+  {code:"+373",flag:"🇲🇩",name:"Moldova"},{code:"+976",flag:"🇲🇳",name:"Mongolia"},
+  {code:"+382",flag:"🇲🇪",name:"Montenegro"},{code:"+212",flag:"🇲🇦",name:"Morocco"},
+  {code:"+258",flag:"🇲🇿",name:"Mozambique"},{code:"+95",flag:"🇲🇲",name:"Myanmar"},
+  {code:"+264",flag:"🇳🇦",name:"Namibia"},{code:"+977",flag:"🇳🇵",name:"Nepal"},
+  {code:"+31",flag:"🇳🇱",name:"Netherlands"},{code:"+64",flag:"🇳🇿",name:"New Zealand"},
+  {code:"+505",flag:"🇳🇮",name:"Nicaragua"},{code:"+227",flag:"🇳🇪",name:"Niger"},
+  {code:"+234",flag:"🇳🇬",name:"Nigeria"},{code:"+47",flag:"🇳🇴",name:"Norway"},
+  {code:"+968",flag:"🇴🇲",name:"Oman"},{code:"+92",flag:"🇵🇰",name:"Pakistan"},
+  {code:"+507",flag:"🇵🇦",name:"Panama"},{code:"+675",flag:"🇵🇬",name:"Papua New Guinea"},
+  {code:"+595",flag:"🇵🇾",name:"Paraguay"},{code:"+51",flag:"🇵🇪",name:"Peru"},
+  {code:"+63",flag:"🇵🇭",name:"Philippines"},{code:"+48",flag:"🇵🇱",name:"Poland"},
+  {code:"+351",flag:"🇵🇹",name:"Portugal"},{code:"+974",flag:"🇶🇦",name:"Qatar"},
+  {code:"+40",flag:"🇷🇴",name:"Romania"},{code:"+7",flag:"🇷🇺",name:"Russia"},
+  {code:"+250",flag:"🇷🇼",name:"Rwanda"},{code:"+966",flag:"🇸🇦",name:"Saudi Arabia"},
+  {code:"+221",flag:"🇸🇳",name:"Senegal"},{code:"+381",flag:"🇷🇸",name:"Serbia"},
+  {code:"+232",flag:"🇸🇱",name:"Sierra Leone"},{code:"+65",flag:"🇸🇬",name:"Singapore"},
+  {code:"+421",flag:"🇸🇰",name:"Slovakia"},{code:"+386",flag:"🇸🇮",name:"Slovenia"},
+  {code:"+252",flag:"🇸🇴",name:"Somalia"},{code:"+27",flag:"🇿🇦",name:"South Africa"},
+  {code:"+82",flag:"🇰🇷",name:"South Korea"},{code:"+211",flag:"🇸🇸",name:"South Sudan"},
+  {code:"+34",flag:"🇪🇸",name:"Spain"},{code:"+94",flag:"🇱🇰",name:"Sri Lanka"},
+  {code:"+249",flag:"🇸🇩",name:"Sudan"},{code:"+597",flag:"🇸🇷",name:"Suriname"},
+  {code:"+268",flag:"🇸🇿",name:"Swaziland"},{code:"+46",flag:"🇸🇪",name:"Sweden"},
+  {code:"+41",flag:"🇨🇭",name:"Switzerland"},{code:"+963",flag:"🇸🇾",name:"Syria"},
+  {code:"+886",flag:"🇹🇼",name:"Taiwan"},{code:"+992",flag:"🇹🇯",name:"Tajikistan"},
+  {code:"+255",flag:"🇹🇿",name:"Tanzania"},{code:"+66",flag:"🇹🇭",name:"Thailand"},
+  {code:"+228",flag:"🇹🇬",name:"Togo"},{code:"+216",flag:"🇹🇳",name:"Tunisia"},
+  {code:"+90",flag:"🇹🇷",name:"Turkey"},{code:"+993",flag:"🇹🇲",name:"Turkmenistan"},
+  {code:"+256",flag:"🇺🇬",name:"Uganda"},{code:"+380",flag:"🇺🇦",name:"Ukraine"},
+  {code:"+971",flag:"🇦🇪",name:"United Arab Emirates"},{code:"+44",flag:"🇬🇧",name:"United Kingdom"},
+  {code:"+1",flag:"🇺🇸",name:"United States"},{code:"+598",flag:"🇺🇾",name:"Uruguay"},
+  {code:"+998",flag:"🇺🇿",name:"Uzbekistan"},{code:"+58",flag:"🇻🇪",name:"Venezuela"},
+  {code:"+84",flag:"🇻🇳",name:"Vietnam"},{code:"+967",flag:"🇾🇪",name:"Yemen"},
+  {code:"+260",flag:"🇿🇲",name:"Zambia"},{code:"+263",flag:"🇿🇼",name:"Zimbabwe"},
+];
+
+// Sort alphabetically
+COUNTRIES.sort((a,b)=>a.name.localeCompare(b.name));
+
+let selectedCountry = COUNTRIES.find(c=>c.name==="Germany");
+
+function renderCCList(filter=""){
+  const list = document.getElementById("ccList");
+  const filtered = filter
+    ? COUNTRIES.filter(c=>c.name.toLowerCase().includes(filter.toLowerCase())||c.code.includes(filter))
+    : COUNTRIES;
+  if(!filtered.length){
+    list.innerHTML=`<div class="cc-empty">No results</div>`;
+    return;
+  }
+  list.innerHTML = filtered.map(c=>`
+    <div class="cc-option${c===selectedCountry?" selected":""}" data-code="${c.code}" data-flag="${c.flag}" data-name="${c.name}" role="option">
+      <span class="cc-opt-flag">${c.flag}</span>
+      <span class="cc-opt-name">${c.name}</span>
+      <span class="cc-opt-code">${c.code}</span>
+    </div>`).join("");
+  list.querySelectorAll(".cc-option").forEach(el=>{
+    el.addEventListener("click",()=>{
+      selectedCountry = COUNTRIES.find(c=>c.name===el.dataset.name&&c.code===el.dataset.code);
+      document.getElementById("ccFlag").textContent = selectedCountry.flag;
+      document.getElementById("ccCode").textContent = selectedCountry.code;
+      closeCCDropdown();
+    });
+  });
+}
+
+function openCCDropdown(){
+  const dd = document.getElementById("ccDropdown");
+  const trigger = document.getElementById("ccTrigger");
+  dd.hidden = false;
+  trigger.classList.add("open");
+  trigger.setAttribute("aria-expanded","true");
+  document.getElementById("ccSearch").value="";
+  renderCCList();
+  setTimeout(()=>document.getElementById("ccSearch").focus(),50);
+}
+function closeCCDropdown(){
+  const dd = document.getElementById("ccDropdown");
+  const trigger = document.getElementById("ccTrigger");
+  dd.hidden = true;
+  trigger.classList.remove("open");
+  trigger.setAttribute("aria-expanded","false");
+}
+
+document.getElementById("ccTrigger").addEventListener("click",(e)=>{
+  e.stopPropagation();
+  document.getElementById("ccDropdown").hidden ? openCCDropdown() : closeCCDropdown();
+});
+document.getElementById("ccSearch").addEventListener("input",e=>renderCCList(e.target.value));
+document.addEventListener("click",(e)=>{
+  if(!document.getElementById("ccPicker").contains(e.target)) closeCCDropdown();
+});
+document.getElementById("ccDropdown").addEventListener("click",e=>e.stopPropagation());
+renderCCList();
+
+// Translations
+const T = {
+  en:{
+    brand:"Maison & Co.",eyebrow:"Premium Real Estate",
+    heroTitle:"Find Your Dream Home Today",
+    heroSubtitle:"Tell us what you're looking for — we'll match you with the perfect agent.",
+    fullName:"Full Name",fullNamePh:"Jane Doe",
+    email:"Email Address",emailPh:"jane@example.com",
+    phone:"Phone Number",phonePh:"30 1234567",
+    intent:"I'm interested in",buying:"Buying",selling:"Selling",
+    budget:"Budget",budgetLabel_buying:"Budget",budgetLabel_selling:"Price Range",
+    budgetPh:"Select a range",
+    budgetOptions:["Under €100,000","€100,000 – €250,000","€250,000 – €500,000","€500,000 – €750,000","€750,000 – €1,000,000","€1,000,000 – €2,000,000","€2,000,000 – €5,000,000","Over €5,000,000"],
+    budgetOptions_selling:["Under €100,000","€100,000 – €250,000","€250,000 – €500,000","€500,000 – €750,000","€750,000 – €1,000,000","€1,000,000 – €2,000,000","€2,000,000 – €5,000,000","Over €5,000,000"],
+    area:"Area",areaPh:"e.g. Berlin Mitte",
+    timing:"Timing",timingPh:"Select a timeframe",
+    timingOptions:["As soon as possible","Within 1 month","Within 3 months","Within 6 months","Within 12 months","1 – 2 years","Just exploring options"],
+    submit:"Get Me An Agent",submitting:"Sending…",
+    toastSuccess:"Thanks! An agent will be in touch shortly.",
+    privacy:"Your information is private and never shared without consent.",
+    invalidPhone:"Please enter a valid phone number.",
+    requiredFields:"Please fill in all required fields.",
+    toastError:"Something went wrong. Please try again.",
+    stat1num:"500+",stat1label:"Happy Clients",
+    stat2num:"98%",stat2label:"Satisfaction Rate",
+    stat3num:"12",stat3label:"Cities Covered",
+    whyEyebrow:"Why Choose Us",whyTitle:"A Better Way to Find Your Agent",
+    whySub:"We've reimagined the agent-matching process so you get the right expert, faster.",
+    why1title:"Instant AI Matching",why1desc:"We match you with the right agent within minutes using smart AI — no waiting, no back-and-forth.",
+    why2title:"Verified Agents Only",why2desc:"Every agent in our network is handpicked, background checked, and held to the highest professional standards.",
+    why3title:"Completely Free",why3desc:"Our matching service costs you absolutely nothing. We're paid by agents, not clients. Zero hidden fees, ever.",
+    testiEyebrow:"Client Stories",testiTitle:"What Our Clients Say",
+    testiSub:"Real people, real results. Here's what they experienced working with Maison & Co.",
+    testi1text:"I found my perfect apartment in Prenzlauer Berg within two weeks. The agent they matched me with knew the neighbourhood inside out — truly exceptional.",
+    testi1name:"Sarah M.",testi1city:"Berlin, Germany",
+    testi2text:"Sold my flat above asking price in just 10 days. Maison & Co. matched me with an agent who had already sold three properties on my street. Absolutely recommended.",
+    testi2name:"James K.",testi2city:"Munich, Germany",
+    testi3text:"As a first-time buyer relocating from abroad, I was nervous. The agent Maison & Co. found for me guided me through every step. I felt completely supported.",
+    testi3name:"Priya S.",testi3city:"Hamburg, Germany",
+    footerDesc:"Boutique real estate matching for discerning buyers and sellers across Europe.",
+    footerPrivacy:"Privacy Policy",footerTerms:"Terms",footerRights:"All rights reserved.",footerTagline:"Premium Real Estate · Europe",
+  },
+  de:{
+    brand:"Maison & Co.",eyebrow:"Premium Immobilien",
+    heroTitle:"Finden Sie Ihr Traumhaus",
+    heroSubtitle:"Sagen Sie uns, was Sie suchen — wir vermitteln Ihnen den passenden Makler.",
+    fullName:"Vollständiger Name",fullNamePh:"Max Mustermann",
+    email:"E-Mail-Adresse",emailPh:"max@beispiel.de",
+    phone:"Telefonnummer",phonePh:"30 1234567",
+    intent:"Ich interessiere mich für",buying:"Kaufen",selling:"Verkaufen",
+    budget:"Budget",budgetLabel_buying:"Budget",budgetLabel_selling:"Preisspanne",
+    budgetPh:"Bereich auswählen",
+    budgetOptions:["Unter 100.000 €","100.000 – 250.000 €","250.000 – 500.000 €","500.000 – 750.000 €","750.000 – 1.000.000 €","1.000.000 – 2.000.000 €","2.000.000 – 5.000.000 €","Über 5.000.000 €"],
+    budgetOptions_selling:["Unter 100.000 €","100.000 – 250.000 €","250.000 – 500.000 €","500.000 – 750.000 €","750.000 – 1.000.000 €","1.000.000 – 2.000.000 €","2.000.000 – 5.000.000 €","Über 5.000.000 €"],
+    area:"Gebiet",areaPh:"z. B. Berlin Mitte",
+    timing:"Zeitrahmen",timingPh:"Zeitrahmen auswählen",
+    timingOptions:["So schnell wie möglich","Innerhalb 1 Monats","Innerhalb 3 Monate","Innerhalb 6 Monate","Innerhalb 12 Monate","1 – 2 Jahre","Nur auf der Suche"],
+    submit:"Makler finden",submitting:"Wird gesendet…",
+    toastSuccess:"Danke! Ein Makler wird sich in Kürze melden.",
+    privacy:"Ihre Daten sind privat und werden nicht ohne Ihre Zustimmung weitergegeben.",
+    invalidPhone:"Bitte geben Sie eine gültige Telefonnummer ein.",
+    requiredFields:"Bitte füllen Sie alle Pflichtfelder aus.",
+    toastError:"Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+    stat1num:"500+",stat1label:"Zufriedene Kunden",
+    stat2num:"98%",stat2label:"Zufriedenheitsrate",
+    stat3num:"12",stat3label:"Abgedeckte Städte",
+    whyEyebrow:"Warum wir?",whyTitle:"Der bessere Weg zum Makler",
+    whySub:"Wir haben den Vermittlungsprozess neu gedacht — damit Sie schneller den richtigen Experten finden.",
+    why1title:"KI-Matching in Echtzeit",why1desc:"Wir vermitteln Ihnen den passenden Makler innerhalb weniger Minuten — ohne Wartezeiten oder Umwege.",
+    why2title:"Nur geprüfte Makler",why2desc:"Jeder Makler in unserem Netzwerk ist handverlesen, hintergrundgeprüft und nach höchsten Standards zertifiziert.",
+    why3title:"Kostenloser Service",why3desc:"Unsere Vermittlung ist für Sie vollkommen kostenlos. Wir werden von den Maklern bezahlt, nicht von Ihnen.",
+    testiEyebrow:"Kundenstimmen",testiTitle:"Was unsere Kunden sagen",
+    testiSub:"Echte Menschen, echte Ergebnisse — das erleben unsere Kunden mit Maison & Co.",
+    testi1text:"Ich fand meine perfekte Wohnung im Prenzlauer Berg innerhalb von zwei Wochen. Der vermittelte Makler kannte das Viertel in- und auswendig — wirklich außergewöhnlich.",
+    testi1name:"Sarah M.",testi1city:"Berlin, Deutschland",
+    testi2text:"Ich habe meine Wohnung in 10 Tagen über dem Angebotspreis verkauft. Der Makler hatte bereits drei Immobilien in meiner Straße verkauft. Absolut empfehlenswert.",
+    testi2name:"James K.",testi2city:"München, Deutschland",
+    testi3text:"Als Erstkäuferin aus dem Ausland war ich nervös. Der Makler begleitete mich durch jeden Schritt — ich fühlte mich von Anfang bis Ende bestens unterstützt.",
+    testi3name:"Priya S.",testi3city:"Hamburg, Deutschland",
+    footerDesc:"Boutique-Immobilienvermittlung für anspruchsvolle Käufer und Verkäufer in ganz Europa.",
+    footerPrivacy:"Datenschutz",footerTerms:"Nutzungsbedingungen",footerRights:"Alle Rechte vorbehalten.",footerTagline:"Premium Immobilien · Europa",
+  }
+};
+
+let lang="en", intent="buying";
+
+function applyLang(){
+  const t=T[lang];
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const k=el.dataset.i18n; if(t[k]!==undefined) el.textContent=t[k];
+  });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el=>{
+    const k=el.dataset.i18nPh; if(t[k]!==undefined) el.placeholder=t[k];
+  });
+  document.getElementById("langLabel").textContent=lang==="en"?"🇬🇧 EN":"🇩🇪 DE";
+  // Budget
+  const budget=document.getElementById("budget");
+  const curB=budget.value;
+  const bOpts=intent==="selling"?t.budgetOptions_selling:t.budgetOptions;
+  budget.innerHTML=`<option value="">${t.budgetPh}</option>`+bOpts.map(o=>`<option value="${o}">${o}</option>`).join("");
+  budget.value=curB;
+  document.getElementById("budgetLabel").textContent=intent==="selling"?t.budgetLabel_selling:t.budgetLabel_buying;
+  // Timing
+  const timing=document.getElementById("timing");
+  const curT=timing.value;
+  timing.innerHTML=`<option value="">${t.timingPh}</option>`+t.timingOptions.map(o=>`<option value="${o}">${o}</option>`).join("");
+  timing.value=curT;
+  document.getElementById("submitLabel").textContent=t.submit;
+  document.title=lang==="en"
+    ?"Maison & Co. — Find Your Dream Home with a Trusted Local Agent"
+    :"Maison & Co. — Finden Sie Ihr Traumhaus mit einem vertrauenswürdigen Makler";
+}
+
+document.getElementById("langBtn").addEventListener("click",()=>{lang=lang==="en"?"de":"en";applyLang()});
+
+// Header scroll
+const hdr=document.getElementById("header");
+window.addEventListener("scroll",()=>hdr.classList.toggle("scrolled",window.scrollY>40),{passive:true});
+hdr.classList.toggle("scrolled",window.scrollY>40);
+
+// Intent toggle
+document.querySelectorAll(".toggle-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".toggle-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    intent=btn.dataset.intent;
+    applyLang();
+  });
+});
+
+// Toast
+function toast(msg,type="success"){
+  const wrap=document.getElementById("toasts");
+  const el=document.createElement("div");
+  el.className=`toast ${type}`;el.textContent=msg;
+  wrap.appendChild(el);
+  setTimeout(()=>{el.style.opacity="0";el.style.transition="opacity .3s";setTimeout(()=>el.remove(),300)},4200);
+}
+
+// Submit
+document.getElementById("leadForm").addEventListener("submit",async(e)=>{
+  e.preventDefault();
+  const t=T[lang];
+  const cc=selectedCountry ? selectedCountry.code : "+49";
+  const phoneRaw=document.getElementById("phone").value.trim();
+  const fullPhone=cc+" "+phoneRaw;
+  const data={
+    name:document.getElementById("name").value.trim(),
+    email:document.getElementById("email").value.trim(),
+    phone:fullPhone,
+    intent,
+    budget:document.getElementById("budget").value,
+    area:document.getElementById("area").value.trim(),
+    timing:document.getElementById("timing").value,
+    lang
+  };
+  if(!data.name||!data.email||!phoneRaw||!data.budget||!data.area||!data.timing) return toast(t.requiredFields,"error");
+  if(!/^\d[\d\s().-]{4,18}$/.test(phoneRaw)) return toast(t.invalidPhone,"error");
+  const btn=document.getElementById("submitBtn");
+  btn.disabled=true;
+  btn.innerHTML=`<span class="spinner"></span><span>${t.submitting}</span>`;
+  try{
+    const res=await fetch("/api/airtable-leads",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+    if(!res.ok){const d=await res.json().catch(()=>({}));console.error("Error",res.status,d);throw new Error(res.status);}
+    toast(t.toastSuccess,"success");
+    e.target.reset();
+    intent="buying";
+    document.querySelectorAll(".toggle-btn").forEach(b=>b.classList.toggle("active",b.dataset.intent==="buying"));
+    applyLang();
+  }catch(err){console.error(err);toast(t.toastError,"error");}
+  finally{btn.disabled=false;btn.innerHTML=`<span id="submitLabel">${T[lang].submit}</span>`;}
+});
+
+// Reveal on scroll
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+
+document.getElementById("year").textContent=new Date().getFullYear();
+applyLang();
+</script>
+</body>
+</html>
